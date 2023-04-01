@@ -7,7 +7,7 @@ function App() {
 
   const addTodo = newTodo => {
     if (newTodo) {
-      setTodos([...todos, { id: Date.now(), text: newTodo.text, complete: false }]);
+      setTodos([...todos, { id: Date.now(), title: newTodo.title, text: newTodo.text, complete: false }]);
     }
     console.log(todos)
   };
