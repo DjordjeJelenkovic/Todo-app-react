@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react'
 
 function TodoInList({ todo, toggleComplete, deleteTodo, setEditedTodo, updateTodo }) {
-  const [showEdit, setShowEdit] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [editTodo, setEditTodo] = useState(todo.title);
 
-  if (showEdit) {
-    setEditedTodo(todo)
-  }
+  // if (isEditing) {
+  //   setEditedTodo(todo)
+  // }
 
   function handleSubmit() {
+
+    // e.preventDeafault();
+    setIsEditing(true)
+    // setEditedTodo(editTodo)
+    // console.log("editTodo", editTodo)
+
     updateTodo(editTodo)
   }
   const handleDeleteButton = (todo) => {
@@ -19,7 +25,7 @@ function TodoInList({ todo, toggleComplete, deleteTodo, setEditedTodo, updateTod
   // if (edit) {
   //   document.querySelector(".edit-input").addEventListener("keydown", listener)
   // }
-  // useEffect(() => {
+  // useEffect(() => { 
   // const listener = event => {
   //   if (event.code === "Enter" || event.code === "NumpadEnter") {
   //     console.log("Enter key was pressed. Run your function.");
@@ -37,26 +43,34 @@ function TodoInList({ todo, toggleComplete, deleteTodo, setEditedTodo, updateTod
 
   // }
   return (
-    <form onSubmit={handleSubmit}>
-      {showEdit
-        ? <input className="edit-input" value={editTodo} onChange={(e) => setEditTodo(e.target.value)}
-        />
-        : <h3 onClick={() => {
-          setEditedTodo(todo)
-          setShowEdit(true)
-        }}>{todo.title}</h3>}
-      {/* <h3>{todo.title}</h3> */}
-      <p>{todo.text}</p>
-      {/* <span onClick={}>edit</span> */}
-      <input
-        type="checkbox"
-        onChange={() => toggleComplete(todo)}
-        checked={todo.complete}
-      />
-      <button type="submit" onClick={() => handleDeleteButton(todo)}>Delete</button>
-      {/* <button type="submit" onClick={() => updateTodo(editTodo)}>Edit</button> */}
-      <button type="submit">Edit</button>
-    </form>
+    <div>
+      {isEditing
+        ?
+        <form onSubmit={handleSubmit}>
+          <input autofokus className="edit-input" value={editTodo} onChange={(e) => setEditTodo(e.target.value)} />
+          <button type="submit">Save</button>
+        </form>
+        : (
+          <>
+            <h3 onClick={() => {
+              setEditedTodo(todo)
+              setIsEditing(true)
+            }}>{todo.title}</h3>
+            <p>{todo.text}</p>
+            <input
+              type="checkbox"
+              onChange={() => toggleComplete(todo)}
+              checked={todo.complete}
+            />
+            <button onClick={() => handleDeleteButton(todo)}>Delete</button>
+            {/* <button type="submit" onClick={() => updateTodo(editTodo)}>Edit</button> */}
+            <button onClick={() => {
+              setEditedTodo(todo)
+              setIsEditing(true)
+            }}>Edit</button>
+          </>
+        )}
+    </div>
   )
 }
 

@@ -38,8 +38,13 @@ function App() {
   //   setTodos(editedOldTodo);
   // }
   const updateTodo = (editedProp) => {
-    let editedOldTodo = todos.map(todo => todo.id === editedTodo.id ? { ...todo, title: editedProp } : todo);
-    setTodos(editedOldTodo);
+    let newTodos = todos.map(todo => todo.id === editedTodo.id ? { ...todo, title: editedProp } : todo);
+
+    let editedOldTodo = newTodos.find(todo => todo.id === editedTodo.id);
+
+    setEditedTodo(editedOldTodo)
+
+    setTodos(newTodos);
   }
   console.log(todos)
 

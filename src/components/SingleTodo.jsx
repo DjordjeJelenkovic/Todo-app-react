@@ -7,19 +7,22 @@ function SingleTodo({ todo, toggleComplete, deleteTodo }) {
   const handleDeleteButton = (todo) => {
     deleteTodo(todo);
   }
+  const { title, text } = todo
+  console.log(title)
+  console.log(text)
 
   return (
-    <div onClick={() => handleDeleteButton(todo)}>
+    <div>
       {/* {edit ? (<input />) : <h3>{todo.title}</h3>} */}
-      <h3>{todo.title}</h3>
-      <p>{todo.text}</p>
+      <h3>{title}</h3>
+      <p>{text}</p>
       {/* <span onClick={}>edit</span> */}
       <input
         type="checkbox"
         onChange={() => toggleComplete(todo)}
         checked={todo.complete}
       />
-      <button type="submit" onClick={() => handleDeleteButton(todo)}>Delete</button>
+      <button onClick={() => handleDeleteButton(todo)}>Save</button>
     </div>
   )
 }
