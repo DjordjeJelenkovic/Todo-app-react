@@ -49,15 +49,12 @@ function App() {
   console.log(todos)
 
   return (
-    <div className="todo-app">
-
-      <h1>
-        Todo list
-      </h1>
-      <div className='flex flex-col'>
+    <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-8">
+      <h1 className="text-3xl font-bold mb-4 text-center">Todo List</h1>
+      <div className="max-w-xl mx-auto">
         <InputField addTodo={addTodo} />
-        <div className='list-and-edit flex flex-row'>
-          <div className='w-4/12'>
+        <div className="flex flex-col sm:flex-row">
+          <div className="w-full sm:w-1/2 mr-2">
             <TodoList
               todos={todos}
               toggleComplete={toggleComplete}
@@ -67,7 +64,7 @@ function App() {
               editedTodo={editedTodo}
             />
           </div>
-          <div className='w-8/12'>
+          <div className="w-full sm:w-1/2 mt-4 sm:mt-0">
             {/* <TodoInList
               key={todo.id}
               todo={todo}

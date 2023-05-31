@@ -3,13 +3,10 @@ import React, { useState } from 'react'
 function SingleTodo({ todo, toggleComplete, deleteTodo }) {
   // const [edit, setEdit] = useState(false);
   // const [editTodo, setEditTodo] = useStatetate(todo);
-  console.log(todo)
   const handleDeleteButton = (todo) => {
     deleteTodo(todo);
   }
   const { title, text } = todo
-  console.log(title)
-  console.log(text)
 
   return (
     <div>
@@ -22,7 +19,7 @@ function SingleTodo({ todo, toggleComplete, deleteTodo }) {
         onChange={() => toggleComplete(todo)}
         checked={todo.complete}
       />
-      <button onClick={() => handleDeleteButton(todo)}>Save</button>
+      <button onClick={() => handleDeleteButton(todo)}>Delete</button>
     </div>
   )
 }

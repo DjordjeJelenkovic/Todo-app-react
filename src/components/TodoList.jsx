@@ -5,7 +5,7 @@ import SingleTodo from './SingleTodo';
 function TodoList({ todos, toggleComplete, deleteTodo, setEditedTodo, editedTodo, updateTodo }) {
   console.log(todos)
   // const [editTodo, setEditTodo] = useState(null);
-  console.log("editedTodo", editedTodo)
+  // console.log("editedTodo", editedTodo)
   return (
     <div>
       <div className='flex flex-col w-4/12'>

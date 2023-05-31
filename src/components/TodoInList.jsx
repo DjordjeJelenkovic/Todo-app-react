@@ -4,18 +4,17 @@ function TodoInList({ todo, toggleComplete, deleteTodo, setEditedTodo, updateTod
   const [isEditing, setIsEditing] = useState(false);
   const [editTodo, setEditTodo] = useState(todo.title);
 
-  // if (isEditing) {
-  //   setEditedTodo(todo)
-  // }
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
 
-    // e.preventDeafault();
+    console.log(e)
     setIsEditing(true)
     // setEditedTodo(editTodo)
     // console.log("editTodo", editTodo)
 
     updateTodo(editTodo)
+    setIsEditing(false)
   }
   const handleDeleteButton = (todo) => {
     deleteTodo(todo);
