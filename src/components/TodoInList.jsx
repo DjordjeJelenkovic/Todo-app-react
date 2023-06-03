@@ -42,31 +42,42 @@ function TodoInList({ todo, toggleComplete, deleteTodo, setEditedTodo, updateTod
 
   // }
   return (
-    <div>
+    <div className="border-2 border-gray-300 p-4 my-2 rounded shadow-md">
       {isEditing
         ?
-        <form onSubmit={handleSubmit}>
-          <input autofokus className="edit-input" value={editTodo} onChange={(e) => setEditTodo(e.target.value)} />
-          <button type="submit">Save</button>
+        <form onSubmit={handleSubmit} className="flex flex-col">
+          <input autofokus className="border p-2 my-2 rounded shadow-sm" 
+                 value={editTodo} 
+                 onChange={(e) => setEditTodo(e.target.value)} 
+          />
+          <button className="bg-blue-500 text-white p-2 rounded mt-2 hover:bg-blue-700" type="submit">Save</button>
         </form>
         : (
           <>
-            <h3 onClick={() => {
+            <h3 className="font-bold text-lg cursor-pointer" onClick={() => {
               setEditedTodo(todo)
               setIsEditing(true)
             }}>{todo.title}</h3>
-            <p>{todo.text}</p>
-            <input
-              type="checkbox"
-              onChange={() => toggleComplete(todo)}
-              checked={todo.complete}
-            />
-            <button onClick={() => handleDeleteButton(todo)}>Delete</button>
-            {/* <button type="submit" onClick={() => updateTodo(editTodo)}>Edit</button> */}
-            <button onClick={() => {
-              setEditedTodo(todo)
-              setIsEditing(true)
-            }}>Edit</button>
+            <p className="my-2">{todo.text}</p>
+            <label className="inline-flex items-center mt-3">
+              <input type="checkbox"
+                     onChange={() => toggleComplete(todo)}
+                     checked={todo.complete}
+                     className="form-checkbox h-5 w-5 text-gray-600"
+              /><span className="ml-2 text-gray-700">Complete</span>
+            </label>
+            <div className="flex justify-between mt-4">
+              <button onClick={() => handleDeleteButton(todo)}
+                      className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
+                Delete
+              </button>
+              <button onClick={() => {
+                setEditedTodo(todo)
+                setIsEditing(true)
+              }} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">
+                Edit
+              </button>
+            </div>
           </>
         )}
     </div>
